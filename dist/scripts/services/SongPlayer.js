@@ -24,8 +24,7 @@
         */
         var setSong = function(song) {
             if (currentBuzzObject) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                SongPlayer.stop();
             }
 
             currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -97,8 +96,7 @@
             currentSongIndex--;
             
             if (currentSongIndex < 0) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                SongPlayer.stop();
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
@@ -107,7 +105,35 @@
             
         }
 
+        /**
+        * @function next
+        * @desc Changes the currently playing song to the one after it.
+        */
+        SongPlayer.next = function() {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
+            
+            if (currentSongIndex > currentAlbum.songs.length-1) {
+                SongPlayer.stop();
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+            
+        }
+        
+        /**
+        * @function stop
+        * @desc Stops the current song that is playing and sets the current song to null.
+        */
+        SongPlayer.stop = function() {
+            currentBuzzObject.stop();
+            SongPlayer.currentSong.playing = null;
+        }
+        
         return SongPlayer;
+        
     }
     
     angular
