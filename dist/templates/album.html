@@ -9,8 +9,14 @@
              <h5 class="album-view-release-info">{{ album.albumData.year + " " + album.albumData.label }}</h5>
          </div>
      </section>
+    <div>
+        <br>
+        <label for="search">Search these songs:</label>
+        <input type="text" ng-model="searchText" placeholder="Search Here:">
+        <br>
+    </div>
      <table class="album-view-song-list">
-         <tr class="album-view-song-item" ng-repeat="song in album.albumData.songs"ng-mouseover="hovered = true" ng-mouseleave="hovered = false">
+         <tr class="album-view-song-item" ng-repeat="song in album.albumData.songs | filter:searchText" ng-mouseover="hovered = true" ng-mouseleave="hovered = false">
              <td class="song-item-number">
                  <span ng-show="!song.playing && !hovered">{{ $index +1 }}</span>
                  <a class="album-song-button" ng-show="!song.playing && hovered" ng-click="album.songPlayer.play(song)"><span class="ion-play"></span></a>
