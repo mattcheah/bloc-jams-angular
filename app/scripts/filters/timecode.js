@@ -6,7 +6,7 @@
                 return '-:--';
             }
             
-            var seconds = Number.parseFloat(seconds);
+            /*var seconds = Number.parseFloat(seconds);
             var wholeSeconds = Math.floor(seconds);
             var minutes = Math.floor(wholeSeconds / 60);
             var remainingSeconds = wholeSeconds % 60;
@@ -17,9 +17,9 @@
              output += '0';   
             }
 
-            output += remainingSeconds;
+            output += remainingSeconds;*/
             
-            return output;
+            return buzz.toTimer(seconds);
         };
     }
     

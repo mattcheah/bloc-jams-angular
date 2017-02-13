@@ -38,6 +38,12 @@
                  });
              });
             
+            currentBuzzObject.bind('ended', function() {
+                $rootScope.$apply(function() {
+                    SongPlayer.next();
+                }); 
+            });
+            
             SongPlayer.currentSong = song;
         };
         
